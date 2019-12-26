@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "email-address": "^1.2.2",
     "express": "^4.17.1",
     "express-async-router": "^0.1.15",
