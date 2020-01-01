@@ -5,5 +5,6 @@ const router = new AsyncRouter();
 
 router.get('/', controller.GetAll);
 router.post('/', controller.Create);
+router.post('/login', controller.Login);
 
 export default router;

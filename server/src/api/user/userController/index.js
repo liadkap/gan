@@ -1,6 +1,7 @@
 import User from '../userModel'
+import { sign } from '../../../auth'
 
-export const GetAll = async ({req,res}) => {
+export const GetAll = async ({ req, res }) => {
     try {
         return await User.find({});
     }
@@ -18,7 +19,20 @@ export const Get = async ({ id }) => {
     }
 }
 
-export const Create = async ({req,res}) => {
+export const Login = async ({ body: { email, password } }, res) => {
+    try {
+        const user = await User.findOne({ email: email, password: password });
+        if (user !== null) {
+            const token = await sign(user);
+            res.send(token);
+        }
+    }
+    catch (err) {
+        res.send('hiiiii');
+    }
+}
+
+export const Create = async ({ req, res }) => {
     try {
         const user = new User({
             name: {
