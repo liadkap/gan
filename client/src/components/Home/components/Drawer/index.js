@@ -4,7 +4,7 @@ import DrawerContent from './components/DrawerContent'
 
 export default ({open ,onClose}) => {
     return (
-        <Drawer anchor="right" variant="persistent" open={open} onClose={onClose}>
+        <Drawer anchor="right"  open={open} onClose={onClose}>
             {<DrawerContent></DrawerContent>}
         </Drawer>
     );
