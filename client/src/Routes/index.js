@@ -1,18 +1,10 @@
 import React from 'react'
-import Home from '../components/Home'
-import Login from '../components/Login'
+import { Switch, Route } from "react-router";
+import Routes from './components/Routes'
 
-const routes = [
-    {
-        name: 'home',
-        path: '/',
-        component: Home
-    },
-    {
-        name: 'login',
-        path: '/login',
-        component: Login
-    }
-]
+const routes = [...Routes]
 
-export default routes;
+export default () =>
+    <Switch>
+        {Routes.map(({ name, path, component: Component }) => { return <Route exact key={name} path={path} render={() => (<Component />)}></Route> })}
+    </Switch>
