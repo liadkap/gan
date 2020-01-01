@@ -5,6 +5,7 @@ import { AppBar, Button, Typography, Toolbar, Box } from '@material-ui/core';
 import { useDrawer } from '../../Provider/DrawerStateProvider';
 import { useHistory } from "react-router-dom";
 import { Column } from 'mui-flex-layout'
+import { useUser } from '../../Provider/UserProvider'
 
 const useStyles = makeStyles({
   toolbar: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 export default () => {
+  const { User } = useUser();
   const classes = useStyles();
   const history = useHistory();
   const drawer = useDrawer();
@@ -31,7 +33,7 @@ export default () => {
     <Column>
       <AppBar position={'static'}>
         <Toolbar className={classes.toolbar}>
-          <Button color="inherit" onClick={loginRedirect}>התחבר</Button>
+          {User === null || User === undefined ? <Button color="inherit" onClick={loginRedirect}>התחבר</Button> : <Typography>{`שלום ${User.name.first} ${User.name.last}`}</Typography>}
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Typography onClick={homeRedirect} variant="h6" marginright={'10px'}> הגן המוזיקלי של זהבה </Typography>
             <Reorder onClick={drawer.toggleDrawer}></Reorder>

@@ -1,13 +1,13 @@
 import express from "express";
 import mongoose from './src/config/mongoose';
 import Routes from './src/routes';
+import middleware from "./src/config/middleware";
 require('dotenv').config();
-import cors from 'cors'
+
 
 const app = express();
 mongoose();
-app.use(express.json());
-app.use(cors());
+middleware(app);
 
 Routes(app);
 

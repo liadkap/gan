@@ -24,7 +24,7 @@ export const Login = async ({ body: { email, password } }, res) => {
         const user = await User.findOne({ email: email, password: password });
         if (user !== null) {
             const token = await sign(user);
-            res.send(token);
+            res.send({ user: user, token: token });
         }
     }
     catch (err) {
