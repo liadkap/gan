@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Reorder } from '@material-ui/icons';
 import { AppBar, Button, Typography, Toolbar, Box } from '@material-ui/core';
@@ -19,7 +19,7 @@ export default () => {
   const { User } = useUser();
   const classes = useStyles();
   const history = useHistory();
-  const drawer = useDrawer();
+  const {toggleDrawer} = useDrawer();
 
   const loginRedirect = () => {
     history.push('/login');
@@ -36,7 +36,7 @@ export default () => {
           {User === null || User === undefined ? <Button color="inherit" onClick={loginRedirect}>התחבר</Button> : <Typography>{`שלום ${User.name.first} ${User.name.last}`}</Typography>}
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Typography onClick={homeRedirect} variant="h6" marginright={'10px'}> הגן המוזיקלי של זהבה </Typography>
-            <Reorder onClick={drawer.toggleDrawer}></Reorder>
+            <Reorder onClick={toggleDrawer}></Reorder>
           </Box>
         </Toolbar>
       </AppBar>

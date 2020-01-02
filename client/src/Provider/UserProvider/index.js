@@ -9,7 +9,7 @@ const UserProvider = props => {
         localStorage.setItem('token', token);
     }
     const getToken = () => {
-        localStorage.getItem('token');
+        return localStorage.getItem('token');
     }
 
     return <UserContext.Provider
