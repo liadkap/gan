@@ -1,10 +1,20 @@
 import React from 'react'
-import { Switch, Route } from "react-router";
-import Routes from './components/Routes'
+import { Switch } from "react-router";
+import { Redirect, Route } from 'react-router-dom'
+import PublicRoutes from './components/PublicRoute'
+import PrivateRoutes from './components/PrivateRoute'
+import { useUser } from '../Provider/UserProvider'
 
-const routes = [...Routes]
+const publicRoutes = [...PublicRoutes]
+const privateRoutes = [...PrivateRoutes]
 
-export default () =>
-    <Switch>
-        {Routes.map(({ name, path, component: Component }) => { return <Route exact key={name} path={path} render={() => (<Component />)}></Route> })}
-    </Switch>
+export default () => {
+    const { isLogedin } = useUser();
+    console.log(isLogedin());
+
+    return (
+        <Switch>
+            {publicRoutes.map(({ name, path, component: Component }) => { return <Route exact key={name} path={path} render={() => (<Component />)}></Route> })}
+            {privateRoutes.map(({ name, path, component: Component }) => { return <Route exact key={name} path={path} render={() => isLogedin() ? (<Component />) : (<Redirect to="/login" />)}></Route> })}
+        </Switch>);
+}

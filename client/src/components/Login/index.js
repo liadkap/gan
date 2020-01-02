@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, TextField } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import Form from './components/Form'
 import { Formik } from 'formik';
 import axios from 'axios'
@@ -15,7 +15,6 @@ export default () => {
     }
 
     const onSubmit = async (values, { setSubmitting }) => {
-        console.log(await axios.get('http://localhost:5000/users', { headers: { authorization: getToken() } }));
         try {
             const { data: { user, token } } = await axios.post('http://localhost:5000/users/login', { email: values.email, password: values.password });
             setUser(user);

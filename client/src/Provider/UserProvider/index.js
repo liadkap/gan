@@ -12,12 +12,17 @@ const UserProvider = props => {
         return localStorage.getItem('token');
     }
 
+    const isLogedin = () => {
+        return user !== null;
+    }
+
     return <UserContext.Provider
         value={{
             User: user,
             setUser: setUser,
             setToken: setToken,
-            getToken: getToken
+            getToken: getToken,
+            isLogedin: isLogedin
         }}
         {...props}
     />
