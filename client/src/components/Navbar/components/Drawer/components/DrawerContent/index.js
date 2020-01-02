@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useUser } from '../../../../../../Provider/UserProvider'
 
 
-export default () => {
+export default ({ onClose }) => {
     const history = useHistory();
     const { isAdmin } = useUser();
 
@@ -34,7 +34,10 @@ export default () => {
         <Box width='250px'>
             <List>
                 {items.map(x => (
-                    <ListItem button key={x.name} onClick={() => { history.push(x.path) }}>
+                    <ListItem button key={x.name} onClick={() => {
+                        onClose();
+                        history.push(x.path)
+                    }}>
                         <ListItemText primary={x.name} />
                     </ListItem>
                 ))}
@@ -44,7 +47,10 @@ export default () => {
                 isAdmin() &&
                 <List>
                     {adminItems.map(x => (
-                        <ListItem button key={x.name} onClick={() => { history.push(x.path) }}>
+                        <ListItem button key={x.name} onClick={() => {
+                            onClose();
+                            history.push(x.path)
+                        }}>
                             <ListItemText primary={x.name} />
                         </ListItem>
                     ))}

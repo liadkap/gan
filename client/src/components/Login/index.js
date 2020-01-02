@@ -7,7 +7,7 @@ import { useUser } from '../../Provider/UserProvider'
 import { useHistory } from "react-router-dom";
 
 export default () => {
-    const { setToken, setUser, User, getToken } = useUser();
+    const { setToken, setUser } = useUser();
     const history = useHistory();
 
     const validateInput = (values) => {
@@ -16,7 +16,7 @@ export default () => {
 
     const onSubmit = async (values, { setSubmitting }) => {
         try {
-            const { data: { user, token } } = await axios.post('http://localhost:5000/users/login', { email: values.email, password: values.password });
+            const { data: { user, token } } = await axios.post('http://localhost:4321/users/login', { email: values.email, password: values.password });
             setUser(user);
             setToken(token);
             history.push('/');
