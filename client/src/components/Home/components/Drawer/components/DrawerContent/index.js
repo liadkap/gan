@@ -1,10 +1,12 @@
 import React from 'react'
-import { Box, List, ListItem, ListItemText, Divider, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom'
+import { Box, List, ListItem, ListItemText, Divider } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { useUser } from '../../../../../../Provider/UserProvider'
 
 
 export default () => {
     const history = useHistory();
+    const { isAdmin } = useUser();
 
     const items = [
         {
@@ -21,6 +23,13 @@ export default () => {
         }
     ]
 
+    const adminItems = [
+        {
+            name: 'יצירת משתמש חדש',
+            path: 'register'
+        }
+    ]
+
     return (
         <Box width='250px'>
             <List>
@@ -31,13 +40,17 @@ export default () => {
                 ))}
             </List>
             <Divider />
-            <List>
-                {['All mail', 'צור קשר', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            {
+                isAdmin() &&
+                <List>
+                    {adminItems.map(x => (
+                        <ListItem button key={x.name} onClick={() => { history.push(x.path) }}>
+                            <ListItemText primary={x.name} />
+                        </ListItem>
+                    ))}
+                </List>
+            }
+
         </Box>
     );
 }

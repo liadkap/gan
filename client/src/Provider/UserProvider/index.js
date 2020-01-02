@@ -16,13 +16,18 @@ const UserProvider = props => {
         return user !== null;
     }
 
+    const isAdmin = () => {
+        return isLogedin() && user.admin;
+    }
+
     return <UserContext.Provider
         value={{
             User: user,
             setUser: setUser,
             setToken: setToken,
             getToken: getToken,
-            isLogedin: isLogedin
+            isLogedin: isLogedin,
+            isAdmin: isAdmin
         }}
         {...props}
     />
