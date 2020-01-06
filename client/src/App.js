@@ -15,7 +15,7 @@ export default () => {
             <Box display={'flex'} width={'100%'} height={'100%'} flexDirection={'column'}>
                 <Providers>
                     <Navbar />
-                    <Routes/>>
+                    <Routes/>
                 </Providers>
             </Box >
         </Router >

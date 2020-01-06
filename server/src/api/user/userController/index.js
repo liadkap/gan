@@ -10,17 +10,18 @@ export const Get = async ({ id }) => {
     }
 }
 
-export const Login = async ({ body: { email, password } }, res) => {
+export const Login = async ({ body: { email, password } }, res, next) => {
     try {
         const user = await User.findOne({ email: email, password: password });
-        if (user === null) res.sendStatus(404);
+        if (user === null) {
+            return res.status(403).send(`user doesn't exists`);
+        }
 
         const token = await sign(user);
-        res.send({ user: user, token: token });
-
+        return res.send({ user: user, token: token });
     }
     catch (err) {
-        res.sendStatus(500);
+        next.sendStatus(500);
     }
 }
 
