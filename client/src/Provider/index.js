@@ -1,7 +1,10 @@
 import React from 'react'
 import UserProvider from './UserProvider'
+import ThemeProvider from './ThemeProvider'
 
 export default ({ children }) =>
-    <UserProvider>
-        {children}
-    </UserProvider>
+    <ThemeProvider>
+        <UserProvider>
+            {children}
+        </UserProvider>
+    </ThemeProvider>

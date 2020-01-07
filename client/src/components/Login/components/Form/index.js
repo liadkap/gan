@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Column, Row } from 'mui-flex-layout';
 import { style } from '../../../../Theme'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({palette}) => ({
     Form: {
         width: '40%',
         height: '100%',
@@ -18,12 +18,12 @@ const useStyles = makeStyles(() => ({
         top: '20px'
     },
     Avatar: {
-        backgroundColor: style.primaryButton
+        backgroundColor: palette.primary.main
     },
     Submit: {
-        backgroundColor: style.primaryButton,
+        backgroundColor: palette.primary.main,
         color: 'white',
-        width: '90px',
+        width: '120px',
         height: '40px'
     },
     Row: {
@@ -33,8 +33,8 @@ const useStyles = makeStyles(() => ({
         paddingTop: '20px'
     },
     Error: {
-        color: style.error,
-        fontSize: '20px',
+        color: palette.error,
+        fontSize: '15px',
         fontWeight: 'bold',
         direction: 'rtl'
     }
@@ -81,8 +81,8 @@ export default ({ errors, handleSubmit, handleChange, handleBlur, values, isSubm
                     value={values.password}
                 />
                 <Row className={classes.Row}>
-                    <Button type="submit" disabled={isSubmitting} className={classes.Submit}> התחבר </Button>
                     <Typography className={classes.Error}>{errors}</Typography>
+                    <Button type="submit" disabled={isSubmitting} className={classes.Submit}> התחבר </Button>
                 </Row>
             </form>
         </FullColumn>

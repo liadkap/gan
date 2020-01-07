@@ -19,8 +19,7 @@ export default () => {
             history.push('/');
         }
         catch ({ response }) {
-            response.status === 403 && setError(`שם משתמש או סיסמא אינם נכונים`);
-        
+            response.status === 403 ? setError(`שם משתמש או סיסמא אינם נכונים`) : setError('התרחשה תקלה, אנא נסה שנית מאוחר יותר');
         }
     }
 
@@ -30,7 +29,7 @@ export default () => {
                 initialValues={{ email: '', password: '' }}
                 onSubmit={onSubmit}
             >
-                {({ values, errors, handleChange, handleBlur, handleSubmit, isSubmitting
+                {({ values, handleChange, handleBlur, handleSubmit, isSubmitting
                 }) => (
                         <Form errors={error} handleSubmit={handleSubmit} handleChange={handleChange} handleBlur={handleBlur} values={values} isSubmitting={isSubmitting} />
                     )}

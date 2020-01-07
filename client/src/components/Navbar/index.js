@@ -39,13 +39,13 @@ export default () => {
 
   return (
     <Column>
-      <AppBar position={'static'}>
+      <AppBar position={'static'} color='primary'>
         <Toolbar className={classes.toolbar}>
-          {User === null || User === undefined ? <Button color="inherit" onClick={loginRedirect}>התחבר</Button> : <Typography>{`שלום ${User.name.first} ${User.name.last}`}</Typography>}
           <Box display='flex' flexDirection='row' alignItems='center'>
-            <Typography onClick={homeRedirect} variant="h6" marginright={'10px'}> הגן המוזיקלי של זהבה </Typography>
             <Reorder onClick={openDrawer}></Reorder>
+            <Typography onClick={homeRedirect} variant="h6"> הגן המוזיקלי של זהבה </Typography>
           </Box>
+          {User === null || User === undefined ? <Button color="inherit" onClick={loginRedirect}>התחבר</Button> : <Typography>{`שלום ${User.name.first} ${User.name.last}`}</Typography>}
         </Toolbar>
         <Drawer open={isOpened} onClose={closeDrawer}></Drawer>
       </AppBar>
